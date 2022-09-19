@@ -1,6 +1,6 @@
 # SunDial
 
-**TODO: Add description**
+Date and Time Helpers for Elixir
 
 ## Installation
 
@@ -15,7 +15,20 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/sun_dial>.
+## Usage
 
+```elixir
+# Formatting
+SunDial.format_month(3) == "March"
+SunDial.format_date(~D[2020-11-01]) == "11/1/2020"
+SunDial.format_date(~N[2021-02-17 00:00:23]) == "2/17/2021"
+SunDial.short_date(~N[2021-02-17 00:00:23]) == "Feb 2021"
+
+# Transformation
+SunDial.utc_today_with_offset(0) == today
+SunDial.utc_today_with_offset(1) == tomorrow
+SunDial.utc_today_with_offset(-1) == yesterday
+
+SunDial.from_iso8601("2022-09-18") == ~D[2022-09-18]
+SunDial.format_iso8601_date("2022-09-18") == "9/18/2022"
+```
