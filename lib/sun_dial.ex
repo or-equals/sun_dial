@@ -53,20 +53,20 @@ defmodule SunDial do
 
   def format_iso8601_date(date), do: date |> from_iso8601() |> format_date()
 
-  # def shift_and_format_naive_datetime(naive) do
-  #   naive
-  #   |> naive_to_datetime()
-  #   |> shift_to_est()
-  #   |> Calendar.strftime("%a, %b %d %Y, %I:%M %p %Z")
-  # end
+  def shift_and_format_naive_datetime(naive) do
+    naive
+    |> naive_to_datetime()
+    |> shift_to_est()
+    |> Calendar.strftime("%a, %b %d %Y, %I:%M %p %Z")
+  end
 
-  # def iso8601_to_naive_datetime(date) do
-  #   {:ok, date} = Date.from_iso8601(date)
-  #   {:ok, datetime} = NaiveDateTime.new(date, ~T[00:00:00.000])
-  #   datetime
-  # end
+  def iso8601_to_naive_datetime(date) do
+    {:ok, date} = Date.from_iso8601(date)
+    {:ok, datetime} = NaiveDateTime.new(date, ~T[00:00:00.000])
+    datetime
+  end
 
-  # defp naive_to_datetime(naive), do: DateTime.from_naive!(naive, "Etc/UTC")
+  defp naive_to_datetime(naive), do: DateTime.from_naive!(naive, "Etc/UTC")
 
-  # defp shift_to_est(datetime), do:  DateTime.shift_zone!(datetime, "America/New_York", Tzdata.TimeZoneDatabase)
+  defp shift_to_est(datetime), do:  DateTime.shift_zone!(datetime, "America/New_York", Tzdata.TimeZoneDatabase)
 end

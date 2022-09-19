@@ -55,7 +55,15 @@ defmodule SunDialTest do
 
     test "iso8601" do
       assert SunDial.from_iso8601("2022-09-18") == ~D[2022-09-18]
-      assert SunDial.format_iso8601_date("2022-09-18") == ~D[2022-09-18]
+      assert SunDial.format_iso8601_date("2022-09-18") == "9/18/2022"
+    end
+
+    test "transformations" do
+      naive = ~N[2022-09-19 11:04:23]
+      assert SunDial.shift_and_format_naive_datetime(naive) == "Mon, Sep 19 2022, 07:04 AM EDT"
+
+      date = "2022-09-19"
+      assert SunDial.iso8601_to_naive_datetime(date) == ~N[2022-09-19 00:00:00.000]
     end
   end
 end
