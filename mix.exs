@@ -4,7 +4,7 @@ defmodule SunDial.MixProject do
   def project do
     [
       app: :sun_dial,
-      version: "0.1.0",
+      version: "0.1.1",
       description: "Useful Date and Time Helpers",
       source_url: "http://github.com/or-equals/sun_dial",
       elixir: "~> 1.13",
