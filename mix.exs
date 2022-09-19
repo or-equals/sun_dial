@@ -5,7 +5,10 @@ defmodule SunDial.MixProject do
     [
       app: :sun_dial,
       version: "0.1.0",
+      description: "Useful Date and Time Helpers",
+      source_url: "http://github.com/or-equals/sun_dial",
       elixir: "~> 1.13",
+      package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -22,6 +25,19 @@ defmodule SunDial.MixProject do
   defp deps do
     [
       {:tzdata, "~> 1.1"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Joshua Plicque"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/or-equals/sun_dial"},
+      files: [
+        "lib/sun_dial.ex",
+        "mix.exs",
+        "README.md"
+      ]
     ]
   end
 end
