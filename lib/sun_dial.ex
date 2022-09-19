@@ -40,17 +40,18 @@ defmodule SunDial do
   def short_date(%NaiveDateTime{year: year, month: month}) do
     "#{String.slice(format_month(month), 0..2)} #{year}"
   end
-  # def utc_today_with_offset(offset_amount), do: Date.add(Date.utc_today(), offset_amount)
 
-  # def naive_utc_today_with_offset(offset_amount, precision \\ :second) do
-  #   NaiveDateTime.utc_now()
-  #   |> NaiveDateTime.add(offset_amount)
-  #   |> NaiveDateTime.truncate(precision)
-  # end
+  def utc_today_with_offset(offset_amount), do: Date.add(Date.utc_today(), offset_amount)
 
-  # def from_iso8601(date), do: with {:ok, date} <- Date.from_iso8601(date), do: date
+  def naive_utc_today_with_offset(offset_amount, precision \\ :second) do
+    NaiveDateTime.utc_now()
+    |> NaiveDateTime.add(offset_amount)
+    |> NaiveDateTime.truncate(precision)
+  end
 
-  # def format_iso8601_date(date), do: date |> from_iso8601() |> format_date()
+  def from_iso8601(date), do: with {:ok, date} <- Date.from_iso8601(date), do: date
+
+  def format_iso8601_date(date), do: date |> from_iso8601() |> format_date()
 
   # def shift_and_format_naive_datetime(naive) do
   #   naive

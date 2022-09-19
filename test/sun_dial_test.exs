@@ -29,4 +29,33 @@ defmodule SunDialTest do
       assert SunDial.short_date(date) == "Feb 2021"
     end
   end
+
+  describe "date transformations" do
+    test "date offset" do
+      today = Date.utc_today()
+      tomorrow = Date.add(Date.utc_today(), +1)
+      yesterday = Date.add(Date.utc_today(), -1)
+
+      assert SunDial.utc_today_with_offset(0) == today
+      assert SunDial.utc_today_with_offset(1) == tomorrow
+      assert SunDial.utc_today_with_offset(-1) == yesterday
+    end
+
+    test "naive offset" do
+      # now has more precision; this function only tracks precision to the second
+      now = NaiveDateTime.utc_now()
+      refute SunDial.naive_utc_today_with_offset(0) == now
+
+      now_with_less_precision = NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
+      assert SunDial.naive_utc_today_with_offset(0) == now_with_less_precision
+
+      # Exactly one day in the future, 86_400 second
+      assert SunDial.naive_utc_today_with_offset(86400) == NaiveDateTime.add(now_with_less_precision, 86400)
+    end
+
+    test "iso8601" do
+      assert SunDial.from_iso8601("2022-09-18") == ~D[2022-09-18]
+      assert SunDial.format_iso8601_date("2022-09-18") == ~D[2022-09-18]
+    end
+  end
 end
