@@ -64,6 +64,10 @@ defmodule SunDialTest do
 
       date = "2022-09-19"
       assert SunDial.iso8601_to_naive_datetime(date) == ~N[2022-09-19 00:00:00.000]
+
+      date = "2022-09-20"
+      offset = 10
+      assert SunDial.iso8601_to_naive_datetime(date, offset) == ~N[2022-09-20 00:00:10.000]
     end
   end
 end

@@ -47,10 +47,11 @@ defmodule SunDial do
     |> Calendar.strftime("%a, %b %d %Y, %I:%M %p %Z")
   end
 
-  def iso8601_to_naive_datetime(date) do
+  def iso8601_to_naive_datetime(date, offset \\ 0) do
     {:ok, date} = Date.from_iso8601(date)
-    {:ok, datetime} = NaiveDateTime.new(date, ~T[00:00:00.000])
-    datetime
+    {:ok, naive_datetime} = NaiveDateTime.new(date, ~T[00:00:00.000])
+
+    NaiveDateTime.add(naive_datetime, offset)
   end
 
   defp naive_to_datetime(naive), do: DateTime.from_naive!(naive, "Etc/UTC")
