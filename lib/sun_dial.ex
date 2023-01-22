@@ -22,7 +22,12 @@ defmodule SunDial do
 
   def format_date(%{year: year, month: month, day: day}), do: "#{month}/#{day}/#{year}"
 
-  def short_date(%{year: year, month: month}), do: "#{String.slice(format_month(month), 0..2)} #{year}"
+  def short_date(%{year: year, month: month}), do: "#{slice_and_format_date(month)} #{year}"
+  def short_date(%{day: date, month: month}, :date), do: "#{slice_and_format_date(month)} #{date}"
+
+  defp slice_and_format_date(month) do
+    String.slice(format_month(month), 0..2)
+  end
 
   def utc_today_with_offset(offset_amount), do: Date.add(Date.utc_today(), offset_amount)
 
