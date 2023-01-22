@@ -10,7 +10,7 @@ by adding `sun_dial` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:sun_dial, "~> 0.1.0"}
+    {:sun_dial, "~> 0.3.0"}
   ]
 end
 ```

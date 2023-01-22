@@ -27,6 +27,9 @@ defmodule SunDialTest do
     test "short date formatting" do
       date = ~N[2021-02-17 00:00:23]
       assert SunDial.short_date(date) == "Feb 2021"
+
+      date = ~U[2023-01-22 18:44:01.180443Z]
+      assert SunDial.short_date(date) == "Jan 2023"
     end
   end
 

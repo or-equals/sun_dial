@@ -20,13 +20,9 @@ defmodule SunDial do
     format_month(String.to_integer(month))
   end
 
-  def format_date(%Date{year: year, month: month, day: day}), do: "#{month}/#{day}/#{year}"
-  def format_date(%NaiveDateTime{year: year, month: month, day: day}), do: "#{month}/#{day}/#{year}"
-  def format_date(%DateTime{year: year, month: month, day: day}), do: "#{month}/#{day}/#{year}"
+  def format_date(%{year: year, month: month, day: day}), do: "#{month}/#{day}/#{year}"
 
-  def short_date(%NaiveDateTime{year: year, month: month}) do
-    "#{String.slice(format_month(month), 0..2)} #{year}"
-  end
+  def short_date(%{year: year, month: month}), do: "#{String.slice(format_month(month), 0..2)} #{year}"
 
   def utc_today_with_offset(offset_amount), do: Date.add(Date.utc_today(), offset_amount)
 
