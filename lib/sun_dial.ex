@@ -24,6 +24,7 @@ defmodule SunDial do
 
   def short_date(%{year: year, month: month}), do: "#{slice_and_format_date(month)} #{year}"
   def short_date(%{day: date, month: month}, :date), do: "#{slice_and_format_date(month)} #{date}"
+  def short_date(%{day: date, month: month, year: year}, :month_day_year), do: "#{slice_and_format_date(month)} #{date} #{year}"
 
   defp slice_and_format_date(month) do
     String.slice(format_month(month), 0..2)

@@ -36,6 +36,11 @@ defmodule SunDialTest do
       date = ~U[2023-01-22 18:44:01.180443Z]
       assert SunDial.short_date(date, :date) == "Jan 22"
     end
+
+    test "short date formatting for month day year" do
+      date = ~U[2023-01-22 18:44:01.180443Z]
+      assert SunDial.short_date(date, :month_day_year) == "Jan 22 2023"
+    end
   end
 
   describe "date transformations" do
