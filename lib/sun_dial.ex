@@ -42,11 +42,11 @@ defmodule SunDial do
 
   def format_iso8601_date(date), do: date |> from_iso8601() |> format_date()
 
-  def shift_and_format_naive_datetime(naive) do
+  def shift_and_format_naive_datetime(naive, time_format \\ "%a, %b %d %Y, %I:%M %p %Z") do
     naive
     |> naive_to_datetime()
     |> shift_to_est()
-    |> Calendar.strftime("%a, %b %d %Y, %I:%M %p %Z")
+    |> Calendar.strftime(time_format)
   end
 
   def iso8601_to_naive_datetime(date, offset \\ 0) do

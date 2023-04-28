@@ -75,6 +75,9 @@ defmodule SunDialTest do
       naive = ~N[2022-09-19 11:04:23]
       assert SunDial.shift_and_format_naive_datetime(naive) == "Mon, Sep 19 2022, 07:04 AM EDT"
 
+      naive = ~N[2022-09-19 11:04:23]
+      assert SunDial.shift_and_format_naive_datetime(naive, "%I:%M %p") == "07:04 AM"
+
       date = "2022-09-19"
       assert SunDial.iso8601_to_naive_datetime(date) == ~N[2022-09-19 00:00:00.000]
 
